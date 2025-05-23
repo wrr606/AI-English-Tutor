@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatGPT 聊天介面</title>
+  <link rel="stylesheet" href="./templates/chat.css">
+</head>
+<body>
+  <div class="chat-container" id="chat">
+    {% for message in list %}
+      {% if message["role"] == "user" %}
+        <div class="message-wrapper">
+          <div class="message">{{ message["content"] }}</div>
+          <div class="actions">
+            <button onclick="copyToClipboard(this)">
+              <img src="./templates/copy.png" alt="複製" style="width: 24px; height: 24px;">
+            </button>
+            <button onclick="improveMessage(this)">
+              <img src="./templates/bulb.png" alt="改進" style="width: 24px; height: 24px;">
+            </button>
+          </div>
+        </div>
+      {% else %}
+        <div class="message-wrapper bot-wrapper">
+          <div class="message">{{ message["content"] }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="輸入訊息..." />
+    <button id="sendButton" onclick="sendMessage()">送出</button>
+  </div>
+
+  <script src="./templates/chat.js"></script>
+</body>
+</html>

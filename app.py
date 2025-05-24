@@ -11,10 +11,11 @@ app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 Session(app)
-os.environ["PATH"] += os.environ["PATH"] \
-        +  ";" +  r"C:\Users\Function\AppData\Local\Programs\Python\Python312\Lib\site-packages\nvidia\cudnn\bin" \
-        +  ";" +  r"C:\Users\Function\AppData\Local\Programs\Python\Python312\Lib\site-packages\nvidia\cublas\bin"
-model = WhisperModel("large-v3", device="cuda", compute_type="float16")
+# os.environ["PATH"] += os.environ["PATH"] \
+#         +  ";" +  r"C:\Users\Function\AppData\Local\Programs\Python\Python312\Lib\site-packages\nvidia\cudnn\bin" \
+#         +  ";" +  r"C:\Users\Function\AppData\Local\Programs\Python\Python312\Lib\site-packages\nvidia\cublas\bin"
+model = WhisperModel("large-v3", device="cpu", compute_type="int8")
+# model = WhisperModel("large-v3", device="cuda", compute_type="float16")
 app.permanent_session_lifetime = timedelta(minutes=30)
 
 @app.route('/', methods=['GET'])
@@ -28,6 +29,11 @@ def chat():
         print(f"回復歷史對話，IP：{session['user']}")
     print(f"session['message']: \t{session['message']}")
     return render_template("chat.html", list = session['message'])
+
+@app.route('/reset-session', methods=['GET'])
+def reset_session():
+    session.clear()
+    return '', 204
 
 @app.route('/submit', methods=['POST'])
 def submit():

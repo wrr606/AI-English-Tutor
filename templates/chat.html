@@ -25,15 +25,29 @@
         <div class="message-wrapper bot-wrapper" id="message-{{ loop.index0 }}">
           <div class="message">{{ message["content"] }}</div>
         </div>
+        <div class="actions">
+          <button onclick="say(this)">
+            <img src="./templates/say.png" alt="發聲" style="width: 24px; height: 24px;">
+          </button>
+          <button onclick="translation(this)">
+            <img src="./templates/translate.png" alt="翻譯" style="width: 24px; height: 24px;">
+          </button>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
   <div class="input-area">
+    <button id="new" onclick="newWindow()">
+      NEW
+    </button>
+    <button id="view" onclick="view()">
+      <img id="viewIcon" src="./templates/view.png" alt="可視" style="width: 24px; height: 24px;">
+    </button>
     <input type="text" id="userInput" placeholder="輸入訊息..." />
     <button id="sendButton" onclick="sendMessage()">送出</button>
     <button id="recordButton" onclick="toggleRecording()">
       <img id="recordIcon" src="./templates/recording.png" alt="錄音" style="width: 24px; height: 24px;">
-    </button>
+    </button> 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

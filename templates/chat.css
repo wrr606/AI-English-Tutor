@@ -24,6 +24,12 @@ body {
     align-self: flex-end;
 }
 
+.message-wrapper .improved-message {
+  margin-top: 5px;
+  font-style: italic;
+  color: #666;
+}
+
 .message {
     background-color: #0084ff;
     color: white;

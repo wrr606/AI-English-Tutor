@@ -10,7 +10,7 @@
   <div class="chat-container" id="chat">
     {% for message in list %}
       {% if message["role"] == "user" %}
-        <div class="message-wrapper">
+        <div class="message-wrapper" id="message-{{ loop.index0 }}">
           <div class="message">{{ message["content"] }}</div>
           <div class="actions">
             <button onclick="copyToClipboard(this)">
@@ -22,7 +22,7 @@
           </div>
         </div>
       {% else %}
-        <div class="message-wrapper bot-wrapper">
+        <div class="message-wrapper bot-wrapper" id="message-{{ loop.index0 }}">
           <div class="message">{{ message["content"] }}</div>
         </div>
       {% endif %}
@@ -31,8 +31,12 @@
   <div class="input-area">
     <input type="text" id="userInput" placeholder="輸入訊息..." />
     <button id="sendButton" onclick="sendMessage()">送出</button>
+    <button id="recordButton" onclick="toggleRecording()">
+      <img id="recordIcon" src="./templates/recording.png" alt="錄音" style="width: 24px; height: 24px;">
+    </button>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="./templates/chat.js"></script>
 </body>
 </html>

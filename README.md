@@ -16,5 +16,6 @@ Python 的 Flask 作為後端，使用 OpenAI Python SDK 串接 Google Gemini Mo
 
 ### 展示：
 ![image](https://github.com/wrr606/AI-English-Tutor/blob/main/exhibit_image/front.png)
+![image](https://github.com/wrr606/AI-English-Tutor/blob/main/exhibit_image/hidden.png)
 
 使用 ChatGPT **查詢 CSS 參數、JavaScript 內建函式功能及使用**。
